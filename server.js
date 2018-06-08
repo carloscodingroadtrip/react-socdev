@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const gravatar = require('gravatar');
+const passport = require('passport');
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
@@ -12,7 +13,6 @@ const app = express();
 //DB config
 const db = require('./config/keys').mongoURI;
 //Connect to db
-
 mongoose
     .connect(db)
     .then(() => console.log(`Connected to the database ${db}`))
@@ -24,10 +24,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
-app.get('/', (req, res) => {
-    res.send('Hello World')
-});
+//passport middleware
+app.use(passport.initialize());
+//passport config
+require('./config/passport')(passport);
 
 //Use routes
 app.use('/api/users', users);

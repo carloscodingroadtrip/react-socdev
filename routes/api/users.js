@@ -4,6 +4,7 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
+const passport = require('passport');
 //load User model
 const User = require('../../models/User');
 
@@ -110,6 +111,21 @@ router.post('/login', (req, res) => {
     });
 });
 
+//@route    GET api/users/current
+//@desc     Return current user after validating the token
+//@access   Private
+router.get('/current', passport.authenticate('jwt', {
+    session: false
+}), (req, res) => {
+    // res.json({msg: 'success'});
+    //Now we can access the user on the req and we can send that as JSON
+    res.json({
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email,
+        avatar: req.user.avatar,
+    });
+});
 
 
 module.exports = router;
