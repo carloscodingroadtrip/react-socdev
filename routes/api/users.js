@@ -15,8 +15,8 @@ router.get('/test', (req, res) => {
     });
 });
 
-//@route    GET api/users/register
-//@desc     To register user
+//@route    POST api/users/register
+//@desc     Register user
 //@access   Public
 router.post('/register', (req, res) => {
     User.findOne({
@@ -53,6 +53,40 @@ router.post('/register', (req, res) => {
             }
         })
         .catch(err => console.log(err));
+});
+
+
+//@route    POST api/users/login
+//@desc     Login user / returning JWT Token
+//@access   Public
+router.post('/login', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    //find user by email
+    User.findOne({
+        email
+    }).then(user => {
+        // check for user
+        if (!user) {
+            return res.status(404).json({
+                email: 'User not found'
+            });
+        }
+        //check password
+        bcrypt.compare(password, user.password)
+            .then(isMatch => {
+                if (isMatch) {
+                    //next time will send the token back
+                    res.json({
+                        msg: 'success'
+                    });
+                } else {
+                    return res.status(400).json({
+                        password: 'Password incorrect'
+                    });
+                }
+            });
+    });
 });
 
 
