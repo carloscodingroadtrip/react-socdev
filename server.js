@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const gravatar = require('gravatar');
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
@@ -15,6 +17,12 @@ mongoose
     .connect(db)
     .then(() => console.log(`Connected to the database ${db}`))
     .catch(err => console.log(err));
+
+//body parser middleware
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
 
 
 app.get('/', (req, res) => {
