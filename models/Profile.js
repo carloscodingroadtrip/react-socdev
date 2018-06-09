@@ -93,6 +93,9 @@ const ProfileSchema = new Schema({
         youtube: {
             type: String,
         },
+        twitter: {
+            type: String,
+        },
         linkedin: {
             type: String,
         },
