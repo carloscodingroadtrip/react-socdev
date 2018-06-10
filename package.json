@@ -1,39 +1,43 @@
 {
-  "name": "react-socdev",
-  "version": "1.0.0",
-  "description": "Social network for developers using MERN stack",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/molinacarlosdev/react-socdev.git"
-  },
-  "keywords": [],
-  "author": "Carlos Molina",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/molinacarlosdev/react-socdev/issues"
-  },
-  "homepage": "https://github.com/molinacarlosdev/react-socdev#readme",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "gravatar": "^1.6.0",
-    "jsonwebtoken": "^8.2.2",
-    "mongoose": "^5.1.4",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "validator": "^10.3.0"
-  },
-  "devDependencies": {
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.9.1",
-    "nodemon": "^1.17.5"
-  }
+	"name": "react-socdev",
+	"version": "1.0.0",
+	"description": "Social network for developers using MERN stack",
+	"main": "server.js",
+	"scripts": {
+		"client-install": "npm install --prefix client",
+		"start": "node server.js",
+		"server": "nodemon server.js",
+		"client": "npm start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\" "
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/molinacarlosdev/react-socdev.git"
+	},
+	"keywords": [],
+	"author": "Carlos Molina",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/molinacarlosdev/react-socdev/issues"
+	},
+	"homepage": "https://github.com/molinacarlosdev/react-socdev#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.18.3",
+		"concurrently": "^3.5.1",
+		"express": "^4.16.3",
+		"gravatar": "^1.6.0",
+		"jsonwebtoken": "^8.2.2",
+		"mongoose": "^5.1.4",
+		"passport": "^0.4.0",
+		"passport-jwt": "^4.0.0",
+		"validator": "^10.3.0"
+	},
+	"devDependencies": {
+		"eslint-config-airbnb": "^16.1.0",
+		"eslint-plugin-import": "^2.12.0",
+		"eslint-plugin-jsx-a11y": "^6.0.3",
+		"eslint-plugin-react": "^7.9.1",
+		"nodemon": "^1.17.5"
+	}
 }
